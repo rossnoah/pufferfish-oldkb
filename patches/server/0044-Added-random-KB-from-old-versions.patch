@@ -1,0 +1,23 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Noah Ross <noahwross@gmail.com>
+Date: Fri, 14 Apr 2023 14:57:16 -0400
+Subject: [PATCH] Added random KB from old versions
+
+
+diff --git a/src/main/java/net/minecraft/world/entity/LivingEntity.java b/src/main/java/net/minecraft/world/entity/LivingEntity.java
+index f3d96caa83ef4a8083b78e3265282d4723e37d28..62bf48b517dde90546ba2d892031e3bb4727695c 100644
+--- a/src/main/java/net/minecraft/world/entity/LivingEntity.java
++++ b/src/main/java/net/minecraft/world/entity/LivingEntity.java
+@@ -4427,4 +4427,11 @@ public abstract class LivingEntity extends Entity implements Attackable {
+     public static record Fallsounds(SoundEvent small, SoundEvent big) {
+ 
+     }
+-}
++
++    @Override
++    protected void markHurt() {
++        this.hurtMarked = this.random.nextDouble() >= this.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE);
++    }
++
++
++    }
